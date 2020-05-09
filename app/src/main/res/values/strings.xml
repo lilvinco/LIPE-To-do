@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">TodoApp</string>
+
+    <string-array name="tasks">
+        <item>Buy chim-chim</item>
+        <item>Prep for exam</item>
+        <item>Be the best you</item>
+    </string-array>
+
+    <string-array name="dates">
+        <item>5/9/2020</item>
+        <item>3/6/2020</item>
+        <item>3/3/2020</item>
+    </string-array>
+
+    <string-array name="deadlines">
+        <item>5/31/2020</item>
+        <item>3/31/2020</item>
+        <item>3/31/2020</item>
+    </string-array>
+</resources>
