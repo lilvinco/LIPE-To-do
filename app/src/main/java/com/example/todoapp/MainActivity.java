@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -52,7 +53,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "You clicked fab", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+               // Snackbar.make(view, "You clicked fab", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                Intent intent = new Intent(getApplicationContext(), AddTaskActivity.class);
+                startActivity(intent);
             }
         });
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
