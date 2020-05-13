@@ -2,7 +2,7 @@
 Simple To-do app for LIPE
 
 
-![alt text](https://github.com/lilvinco/LIPE-To-do/blob/RoomBD/Screenshot_1589365993?raw=true)
+![alt text](Screenshot_1589365993.png?raw=true)
 
 
 ![alt text](https://github.com/lilvinco/LIPE-To-do/blob/RoomBD/Screenshot_1589366002?raw=true)
