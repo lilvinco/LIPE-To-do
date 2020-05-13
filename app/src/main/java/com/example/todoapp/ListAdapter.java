@@ -1,5 +1,6 @@
 package com.example.todoapp;
 
+import android.app.Application;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,22 +9,52 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.TaskViewHolder> {
-    private String[] mDataset;//TODO: Replace with database connection
-    private String[] mDataset2;
-    private String[] mDataset3;
-    private LayoutInflater mInflater;
+    private final LayoutInflater mInflater;
+    public List<Task> mTasks;
 
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public ListAdapter(Context context, String[] myDataset, String[] myDataset2, String[] myDataset3) {
+    public ListAdapter(Context context) {
         mInflater	=	LayoutInflater.from(context);
-        mDataset = myDataset;
-        mDataset2 = myDataset2;
-        mDataset3 = myDataset3;
     }
+
+    @NonNull
+    @Override
+    public TaskViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        //create view and inflate
+        View mItemView = mInflater.inflate(R.layout.todo_item, parent, false);
+        //TaskViewHolder viewHolder = new TaskViewHolder(mItemView);
+        //return viewHolder;
+        return new TaskViewHolder(mItemView);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
+        // - get element from your dataset at this position
+        // - replace the contents of the view with that element
+        if (mTasks != null) {
+            Task current = mTasks.get(position);
+            holder.taskTextView.setText(current.getTaskContent());
+            holder.deadlineTextView.setText(current.getDeadline());
+            holder.dateTextView.setText(current.getDateCreated());
+        } else {
+            // Covers the case of data not being ready yet.
+            holder.taskTextView.setText("No Word");
+        }
+    }
+
+    void setTasks(List<Task> tasks){
+        mTasks = tasks;
+        notifyDataSetChanged();
+    }
+
 
     public class TaskViewHolder extends RecyclerView.ViewHolder {
         // Provide a reference to the views for each data item
@@ -42,32 +73,14 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.TaskViewHolder
         }
     }
 
-    @NonNull
-    @Override
-    public TaskViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        //create view and inflate
-        View mItemView = mInflater.inflate(R.layout.todo_item, parent, false);
-        //TaskViewHolder viewHolder = new TaskViewHolder(mItemView);
-        //return viewHolder;
-        return new TaskViewHolder(mItemView);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
-        //final MyTodoData todoData = mDataset[position];
-        holder.taskTextView.setText(mDataset[position]);
-        holder.dateTextView.setText(mDataset2[position]);
-        holder.deadlineTextView.setText(mDataset3[position]);
-    }
 
     // Return the size of your dataset (invoked by the layout manager)
-
     @Override
     public int getItemCount() {
-        return mDataset.length;
+        if (mTasks != null)
+            return mTasks.size();
+        else return 0;
     }
-
-
 }
+
+

@@ -9,6 +9,8 @@
     <string name="slideshow">Slideshow</string>
     <string name="navigation_drawer_open">Open Navigation Drawer</string>
     <string name="navigation_drawer_close">Close Navigation Drawer</string>
+    <string name="empty_not_saved">Todo is empty, has not been saved</string>
+    <string name="done">Done</string>
 
     <string-array name="tasks">
         <item>Buy chim-chim</item>
